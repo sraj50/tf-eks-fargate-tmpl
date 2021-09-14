@@ -1,21 +1,21 @@
 variable "name" {
   description = "the name of your stack, e.g. \"demo\""
-  default     = "eks-demo"
+  default     = "eks-fargate-test"
 }
 
 variable "environment" {
   description = "the name of your environment, e.g. \"prod\""
-  default     = "prod"
+  default     = "dev"
 }
 
 variable "region" {
   description = "the AWS region in which resources are created, you must set the availability_zones variable as well if you define this value to something other than the default"
-  default     = "eu-west-1"
+  default     = "ap-southeast-2"
 }
 
 variable "availability_zones" {
   description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
-  default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  default     = ["ap-southeast-2a", "ap-southeast-2b", "ap-southeast-2c"]
 }
 
 variable "cidr" {
@@ -25,12 +25,12 @@ variable "cidr" {
 
 variable "private_subnets" {
   description = "a list of CIDRs for private subnets in your VPC, must be set if the cidr variable is defined, needs to have as many elements as there are availability zones"
-  default     = ["10.0.0.0/20", "10.0.32.0/20", "10.0.64.0/20"]
+  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
 
 variable "public_subnets" {
   description = "a list of CIDRs for public subnets in your VPC, must be set if the cidr variable is defined, needs to have as many elements as there are availability zones"
-  default     = ["10.0.16.0/20", "10.0.48.0/20", "10.0.80.0/20"]
+  default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
 
 variable "kubeconfig_path" {
@@ -40,5 +40,5 @@ variable "kubeconfig_path" {
 
 variable "k8s_version" {
   description = "kubernetes version"
-  default = ""
+  default = "2.4.1"
 }

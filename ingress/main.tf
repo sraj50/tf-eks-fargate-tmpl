@@ -6,8 +6,6 @@ provider "kubernetes" {
   host                   = data.aws_eks_cluster.cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
   token                  = data.aws_eks_cluster_auth.cluster.token
-  load_config_file       = false
-  version                = "~> 1.10"
 }
 
 data "aws_eks_cluster" "cluster" {
@@ -273,7 +271,7 @@ resource "kubernetes_deployment" "ingress" {
           name              = "alb-ingress-controller"
           image             = "docker.io/amazon/aws-alb-ingress-controller:v1.1.5"
           image_pull_policy = "Always"
-          
+
           args = [
             "--ingress-class=alb",
             "--cluster-name=${data.aws_eks_cluster.cluster.id}",

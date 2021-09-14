@@ -1,10 +1,36 @@
 terraform {
-  required_version = "~>0.12.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.20.0"
+    }
+
+    local = {
+      source  = "hashicorp/local"
+      version = "2.1.0"
+    }
+
+    template = {
+      source = "hashicorp/template"
+      version = "2.2.0"
+    }
+
+    external = {
+      source = "hashicorp/external"
+      version = "2.1.0"
+    }
+
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = ">= 2.0.1"
+    }
+  }
+
+  required_version = "> 0.14"
 }
 
 provider "aws" {
-  version = "~> 2.44"
-  region  = var.region
+  region = var.region
 }
 
 module "vpc" {
